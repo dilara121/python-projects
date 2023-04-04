@@ -3,72 +3,70 @@ from time import time
 
 import time
 card_password = 5687
-giris_hakki = 2
-toplam_bakiye = 1500
-# def in_out(a) fonksiyonları verdiğinde bu şekilde denicem
+right_of_entry = 2
+total_balance = 1500
 
 while True:
-    sifre = int(input("Kart şifrenizi giriniz : "))
+    password = int(input("Enter password : "))
     time.sleep(2)
-    if card_password == sifre:
-        print("Şifreniz doğru sisteme hoş geldiniz...")
+    if card_password == password:
+        print("Your password is right. Welcome to the system...")
         
         while True:
-            print("1)PARA YATIRMA\n"
-                  "2)PARA ÇEKME\n"
-                  "3)PARA GÖNDERME\n"
-                  "4)BAKİYE SORGULAMA\n")
-            islem = int(input("Yukarıdaki işlemlerden hangisini yapmak istiyorsanız o işlemin numarasını girin: "))
+            print("1)Deposit\n"
+                  "2)Withdraw\n"
+                  "3)Money Transfer\n"
+                  "4)Balance\n")
+            transaction = int(input("Enter the transaction number: "))
             time.sleep(3)
             if islem == 1:
-                tutar = int(input("Yatırmak istediğiniz tutarı giriniz: "))
-                print("Parayı açılan bölmeye yerleştirin.\nParallar sayılıyor...\nYatırılan tutar  {}\n".format(tutar))
-                yeni_bakiye = toplam_bakiye + tutar
-                print("Yeni bakiye : {} TL".format(yeni_bakiye))
-                a = input("ATM den çıkış yapmak için 'Q' tuşuna, işlem menüsüne dönmek için 'X' tuşuna basın: ")
+                amount_determination = int(input("Amount Determination: "))
+                print("Put the money in ATM\nAmount Determination  {}\n".format(amount_determination))
+                new_balance = total_balance + amount_determination
+                print("New balance : {} $".format(new_balance))
+                a = input("Press the 'Q' key to exit the ATM and the 'X' key to return to the transaction menu: ")
                 if a == 'Q':
-                    print("ATM den çıkılıyor. İyi günler. Tekrar bekleriz...")
+                    print("Leaving the ATM. Have a nice day. We hope you come again...")
                     break
                 elif a == 'X':
                     continue
-            if islem == 2:
-                cekilen_tutar = int(input("Çekmek istediğiniz tutarı giriniz: "))
-                if toplam_bakiye - cekilen_tutar < 0:
-                    print("Bu kadar para çekemezsiniz...")
+            if transaction == 2:
+                amount_withdrawn = int(input("Enter the amount you want to withdraw: "))
+                if total_balance - amount_withdrawn < 0:
+                    print("You cannot withdraw that much money....")
                 else:
-                    print("İşleminiz gerçekleştiriliyor...\nParanızı bölmeden alın.\nÇekilen tutar {}' TL".format(
-                        cekilen_tutar))
-                kalan_bakiye = toplam_bakiye - cekilen_tutar
-                if kalan_bakiye >= 0:
-                    print("Kalan Bakiye : {} TL".format(kalan_bakiye))
+                    print("Your transaction is being processed...\nGet your money.\nAmount withdrawn {}' $".format(
+                        amount_withdrawn))
+                available_balance = total_balance - amount_withdrawn
+                if available_balance >= 0:
+                    print("Available balance : {} $".format(available_balance))
                 else:
-                    print("Toplam bakiyeniz : {} TL".format(toplam_bakiye))
-                a = input("ATM den çıkış yapmak için 'Q' tuşuna, işlem menüsüne dönmek için 'X' tuşuna basın: ")
+                    print("Total Balance : {} TL".format(total_balance))
+                a = input("Press the 'Q' key to exit the ATM and the 'X' key to return to the transaction menu: ")
                 if a == 'Q':
-                    print("ATM den çıkılıyor. İyi günler. Tekrar bekleriz...")
+                    print("Leaving the ATM. Have a nice day. We hope you come again...")
                     break
                 elif a == 'X':
                     continue
-            if islem == 3:
-                i_ban = input("Göndemek istediğiniz hesabın IBAN numarasanı girin: ")
-                gonderilen_tutar = int(input("Göndermek istediğiniz tutarı girin: "))
-                print("İşleminiz gerçekleştiriliyor...")
-                kalan_bakiye = toplam_bakiye - gonderilen_tutar
-                print("Kalan Bakiye : {}TL".format(kalan_bakiye))
-                a = input("ATM den çıkış yapmak için 'Q' tuşuna, işlem menüsüne dönmek için 'X' tuşuna basın: ")
+            if transaction == 3:
+                i_ban = input("Enter the IBAN number of the account you want to transfer money to.: ")
+                amount_transferred = int(input("Enter the amount you want to transfer: "))
+                print("Your transaction is being processed...")
+                available_balance = total_balance - amount_transferred
+                print("Available balance : {}$".format(available_balance))
+                a = input("Press the 'Q' key to exit the ATM and the 'X' key to return to the transaction menu: ")
                 if a == 'Q':
-                    print("ATM den çıkılıyor. İyi günler. Tekrar bekleriz...")
+                    print("Leaving the ATM. Have a nice day. We hope you come again...")
                     break
                 elif a == 'X':
                     continue
-            if islem == 4:
-                print("Toplam bakiyeniz {}' TL ".format(toplam_bakiye))
+            if transaction == 4:
+                print("Total Balance {}' $ ".format(total_balance))
         break
     else:
-        print("Şifreniz yanlış. {} giriş hakkınız kaldı.".format(giris_hakki))
-        giris_hakki -= 1
-    if giris_hakki >= 0:
+        print("Your password is wrong. You have {} login left.".format(giris_hakki))
+        right_of_entry -= 1
+    if right_of_entry >= 0:
         continue
-    print("Tüm giriş haklarınızı kullandınız. Kartınız bloke edilmiştir. En yakın şubeden tekrar kullanıma "
-          "açtırabilirsiniz.İYİ GÜNLER DİLERİZ...")
+    print("You have used all your access rights. Your card has been blocked. You can make it available again from the nearest branch. HAVE NICE DAY... ")
     break
