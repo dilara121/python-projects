@@ -19,7 +19,7 @@ while True:
                   "4)Balance\n")
             transaction = int(input("Enter the transaction number: "))
             time.sleep(3)
-            if islem == 1:
+            if transaction == 1:
                 amount_determination = int(input("Amount Determination: "))
                 print("Put the money in ATM\nAmount Determination  {}\n".format(amount_determination))
                 new_balance = total_balance + amount_determination
@@ -64,7 +64,7 @@ while True:
                 print("Total Balance {}' $ ".format(total_balance))
         break
     else:
-        print("Your password is wrong. You have {} login left.".format(giris_hakki))
+        print("Your password is wrong. You have {} login left.".format(right_of_entry))
         right_of_entry -= 1
     if right_of_entry >= 0:
         continue
